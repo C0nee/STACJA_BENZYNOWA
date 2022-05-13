@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacja benzynowa</title>
+    <style>
+        body {
+            /*background-color: brown;*/
+            color: whitesmoke;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+            background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/f5/Stacja_paliw_MOYA.jpg);
+
+        }
+
+        .S {
+            padding: 300px;
+            text-align: center;
+
+        }
+
+        input {
+            border-width: 2px;
+
+        }
+
+        .div1 {
+            text-align: center;
+            display: none;
+            padding: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Z" class="S">
+        <h1>Stacja benzynowa</h1>
+        <div>
+            <h3>Wybierz rodzaj paliwa</h3>
+        </div>
+        <div>
+            <input type="radio" id="benzyna" name="tank" value="paliwo">
+            <label for="benzyna">Benzyna</label>
+            <input type="radio" id="Ropa" name="tank" value="paliwo">
+            <label for="Ropa"> Ropa </label>
+            <input type="radio" id="own" name="tank" value="paliwo" onclick="WlasnaCena()">
+            <label for="own"> Własna cena ropy </label>
+        </div>
+        <div>
+            <p>Wpisz ile litrów zostalo zatankowane:</p>
+            <input type="text" id="litry">
+            <div>
+            <button onclick="oblicz()">oblicz</button>
+        </div>
+            <p>Cena wynosi:</p>
+            <p id="wynik"></p>
+        </div>
+
+    </div>
+    <div id="P" class="div1">
+        <h3>Wybierz czego własną cenę chcesz wpisac</h3>
+        <input type="radio" id="ben" name="tank" value="paliwo">
+        <label for="ben">Benzyna</label>
+        <input type="radio" id="Ro" name="tank" value="paliwo">
+        <label for="Ro"> Ropa </label>
+        <p>wpisz własna cenę Ropy</p>
+        <input type="text" id="WR">
+        <p>Wpisz własna cene benzyny</p>
+        <input type="text" id="WB">
+        <div>
+            <p>Wpisz ile litrów zostalo zatankowane:</p>
+            <input type="text" id="li">
+        </div>
+        <div>
+            <button onclick="obliczaniewlasnejceny()">oblicz</button>
+            <p>Cena wynosi:</p>
+            <p id="wyni"></p>
+        </div>
+    </div>
+    <script>
+        
+
+
+        function oblicz() {
+
+            var Paliwo = document.getElementById("litry").value;
+            let R = document.getElementById("Ropa").checked;
+            let B = document.getElementById("benzyna").checked;
+            if (R == true) {
+                let cena = Paliwo * 7.5;
+                document.getElementById("wynik").innerHTML = cena;
+            }
+            else if (B == true) {
+                let cena = Paliwo * 6.7;
+                document.getElementById("wynik").innerHTML = cena;
+            }
+        }
+        function WlasnaCena() {
+            var znik = document.getElementById("Z")
+            znik.style.display = "none";
+            var poj = document.getElementById("P")
+            poj.style.display = "block"
+        }
+        function obliczaniewlasnejceny() {
+            var Paliwo = document.getElementById("li").value;
+            var WlasnaCenaRopy = document.getElementById("WR").value;
+            var WlasnaCenaBenzyny = document.getElementById("WB").value;
+            let wcr = document.getElementById("Ro").checked;
+            let wcb = document.getElementById("ben").checked;
+            if (wcr == true) {
+                let cena = Paliwo * WlasnaCenaRopy;
+                document.getElementById("wyni").innerHTML = cena;
+            }
+            else if (wcb == true) {
+                let cena = Paliwo * WlasnaCenaBenzyny;
+                document.getElementById("wyni").innerHTML = cena;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
